@@ -12,7 +12,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 20_240_427_105_250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'employees', force: :cascade do |t|
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'email'
+    t.string 'contact_number'
+    t.text 'address'
+    t.string 'pincode'
+    t.string 'city'
+    t.string 'state'
+    t.date 'date_of_birth'
+    t.date 'date_of_hiring'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 end

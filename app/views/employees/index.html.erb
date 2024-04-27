@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Employee List</h1>
+  
+  <% if @employees.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Contact Number</th>
+          <th scope="col">Address</th>
+          <th scope="col">Date of Birth</th>
+          <th scope="col">Date of Hiring</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.full_name %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.contact_number %></td>
+            <td><%= employee.full_address %></td>
+            <td><%= employee.date_of_birth %></td>
+            <td><%= employee.date_of_hiring %></td>
+            <td>
+              <%= link_to 'Show', employee, class: 'btn btn-primary btn-sm' %>
+              <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-secondary btn-sm' %>
+              <%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No employees found.</p>
+  <% end %>
+  
+</div>
