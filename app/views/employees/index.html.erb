@@ -1,5 +1,73 @@
 <div class="container">
   <h1>Employee List</h1>
+    <%= search_form_for @q, html: { class: "row g-3 mb-3" } do |f| %>
+    <div class="col-md-3">
+      <%= f.label :first_name_cont, "First Name", class: "form-label" %>
+      <%= f.text_field :first_name_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :last_name_cont, "Last Name", class: "form-label" %>
+      <%= f.text_field :last_name_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :email_cont, "Email", class: "form-label" %>
+      <%= f.text_field :email_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :contact_number_cont, "Contact Number", class: "form-label" %>
+      <%= f.text_field :contact_number_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :address_cont, "Address", class: "form-label" %>
+      <%= f.text_field :address_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :pincode_cont, "Pincode", class: "form-label" %>
+      <%= f.text_field :pincode_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :city_cont, "City", class: "form-label" %>
+      <%= f.text_field :city_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :state_cont, "State", class: "form-label" %>
+      <%= f.text_field :state_cont, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :date_of_birth_gteq, "Date of Birth From", class: "form-label" %>
+      <%= f.date_field :date_of_birth_gteq, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :date_of_birth_lteq, "Date of Birth To", class: "form-label" %>
+      <%= f.date_field :date_of_birth_lteq, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :date_of_hiring_gteq, "Date of Hiring From", class: "form-label" %>
+      <%= f.date_field :date_of_hiring_gteq, class: "form-control" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.label :date_of_hiring_lteq, "Date of Hiring To", class: "form-label" %>
+      <%= f.date_field :date_of_hiring_lteq, class: "form-control" %>
+    </div>
+
+    <div class="col-12">
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+
+  <%= form_tag import_employees_path, multipart: true, class: "mb-3 row g-3" do %>
+    <div class="col-md-8">
+      <div class="input-group">
+        <%= file_field_tag :file, class: "form-control", id: "inputGroupFile", aria_describedby: "inputGroupFileAddon" %>
+        <label class="input-group-text" for="inputGroupFile">Choose file</label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%= submit_tag "Import CSV", class: "btn btn-primary w-100" %>
+    </div>
+  <% end %>
+
   
   <% if @employees.any? %>
     <table class="table table-striped">
@@ -24,9 +92,11 @@
             <td><%= employee.date_of_birth %></td>
             <td><%= employee.date_of_hiring %></td>
             <td>
-              <%= link_to 'Show', employee, class: 'btn btn-primary btn-sm' %>
-              <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-secondary btn-sm' %>
-              <%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              <div class="btn-group" role="group" aria-label="Employee Actions">
+                <%= link_to 'Show', employee, class: 'btn btn-primary btn-sm' %>
+                <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-secondary btn-sm' %>
+                <%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </div>
             </td>
           </tr>
         <% end %>

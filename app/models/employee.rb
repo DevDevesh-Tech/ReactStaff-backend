@@ -21,6 +21,11 @@ class Employee < ApplicationRecord
     "#{address}, #{city}, #{state}, #{pincode}"
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[address city contact_number date_of_birth date_of_hiring email first_name last_name
+       pincode state]
+  end
+
   private
 
   def years_old(current_date)
