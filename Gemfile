@@ -67,6 +67,8 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'faker'
+gem 'rack-cors'
 gem 'ransack'
 gem 'spreadsheet'
