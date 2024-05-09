@@ -1,6 +1,5 @@
 <div class="container">
-  <h1>Employee List</h1>
-    <%= search_form_for @q, html: { class: "row g-3 mb-3" } do |f| %>
+  <%= search_form_for @q, html: { class: "row g-3 mb-3" } do |f| %>
     <div class="col-md-3">
       <%= f.label :first_name_cont, "First Name", class: "form-label" %>
       <%= f.text_field :first_name_cont, class: "form-control" %>
@@ -68,42 +67,40 @@
     </div>
   <% end %>
 
-  
+
+  <h1 class="mt-5 mb-4">Employees List</h1>
+
   <% if @employees.any? %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Contact Number</th>
-          <th scope="col">Address</th>
-          <th scope="col">Date of Birth</th>
-          <th scope="col">Date of Hiring</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @employees.each do |employee| %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= employee.full_name %></td>
-            <td><%= employee.email %></td>
-            <td><%= employee.contact_number %></td>
-            <td><%= employee.full_address %></td>
-            <td><%= employee.date_of_birth %></td>
-            <td><%= employee.date_of_hiring %></td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Employee Actions">
-                <%= link_to 'Show', employee, class: 'btn btn-primary btn-sm' %>
-                <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-secondary btn-sm' %>
-                <%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-              </div>
-            </td>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Date of hiring</th>
+            <th scope="col">Actions</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.full_name %></td>
+              <td><%= employee.email %></td>
+              <td><%= employee.contact_number %></td>
+              <td><%= employee.date_of_hiring %></td>
+              <td>
+                <%= link_to 'Show', employee, class: 'btn btn-primary btn-sm mx-1' %>
+                <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-secondary btn-sm mx-1' %>
+                <%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% else %>
     <p>No employees found.</p>
   <% end %>
-  
+    
 </div>
